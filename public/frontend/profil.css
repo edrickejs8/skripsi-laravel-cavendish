@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+} */
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    /* background-color: white; */
+    background: linear-gradient(90deg, white, #FFC62E);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* HEADER */
+header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 50px;
+    background: #FEF6D2;
+    border-bottom: 4px solid #FFC62E;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+.logo img {
+    height: 60px;
+    max-width: 150px;
+    object-fit: contain;
+}
+
+/* nav {
+    display: flex;
+    gap: 20px;
+} */
+
+nav {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex: 1;
+}
+
+nav a {
+    text-decoration: none;
+    color: #211912;
+    font-weight: normal;
+    font-size: 16px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+nav a:hover {
+    background-color: #fce98f;
+}
+
+nav a.active {
+    font-weight: bold;
+    background-color: #fbd34c;
+}
+
+/* PROFILE CONTAINER */
+.profile-container {
+    width: 100%;
+    max-width: 960px;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* PROFILE BOX */
+.profile-box {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.photo-placeholder {
+    width: 175px;
+    height: 175px;
+    background-color: #ccc;
+    border: 2px solid #211912;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    font-size: 20px;
+}
+
+.profile-info h2 {
+    font-size: 24px;
+    margin-bottom: 7px;
+}
+
+.profile-info p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+.action-buttons button {
+    padding: 6px 12px;
+    margin-right: 10px;
+    border: 1px solid #999;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* OPTIONS */
+.profile-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-options a {
+    text-decoration: none;
+    color: #211912;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 18px;
+    padding: 22px 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff3a1;
+    width: fit-content;
+    transition: background-color 0.3s;
+}
+
+.profile-options a:hover{
+    background-color: #ffe56c;
+}
+
+.icon {
+    font-size: 22px;
+}
+
+.edit-form {
+    background-color: #fff9d8;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="file"] {
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fff;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #fbd34c;
+    box-shadow: 0 0 5px #fbd34c88;
+}
+
+.submit-btn {
+    align-self: flex-start;
+    padding: 10px 20px;
+    background-color: #fbd34c;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 15px;
+    color: #211912;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.submit-btn:hover {
+    background-color: #ffcc1e;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .profile-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .action-buttons button {
+        margin-bottom: 10px;
+    }
+}
