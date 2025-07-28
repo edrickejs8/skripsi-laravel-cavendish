@@ -10,12 +10,21 @@
     <div class="container">
         <div>
             <h2>Daftar</h2>
-            @if ($errors->any())
+            <!-- @if ($errors->any())
                 <ul style="color:red;">
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
+            @endif -->
+            @if ($errors->has('email'))
+                <p style="color:red;">{{ $errors->first('email') }}</p>
+            @endif
+            @if ($errors->has('password'))
+                <p style="color:red;">{{ $errors->first('password') }}</p>
+            @endif
+            @if ($errors->has('name'))
+                <p style="color:red;">{{ $errors->first('name') }}</p>
             @endif
             <form method="post" action="{{ route('register') }}">
                 @csrf
