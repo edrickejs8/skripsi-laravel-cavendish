@@ -23,7 +23,6 @@ class HomeController extends Controller
             return view('frontend.home', ['reseps' => collect(), 'penyimpanan' => null]);
         }
 
-        // $reseps = Resep::where('tingkat_kematangan', $riwayat->tingkat_kematangan)->get();
         $reseps = Resep::with('bahans')->where('tingkat_kematangan', $riwayat->tingkat_kematangan)->get();
         $penyimpanan = Penyimpanan::find($riwayat->penyimpanan_id);
 

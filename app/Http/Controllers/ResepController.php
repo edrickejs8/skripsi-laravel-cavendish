@@ -14,7 +14,7 @@ class ResepController extends Controller
     {
         $query = Resep::with(['bahans', 'user', 'favoritOleh'])->latest();
 
-        // Filter pencarian
+        // Filter pencarian (search)
         if ($request->has("q") && $request->q != '') {
             $query->where(function ($q) use ($request) {
                 $q->where('nama_resep', 'like', '%' . $request->q . '%')->orWhere('deskripsi', 'like', '%' . $request->q . '%');
@@ -32,12 +32,12 @@ class ResepController extends Controller
         return view('frontend.resep', compact('reseps', 'filter'));
     }
 
-    // menampilkan resep berdasarkan tingkat kematangan
-    public function byTingkatKematangan($tingkat)
-    {
-        $reseps = Resep::where('tingkat_kematangan', $tingkat)->with('bahans')->get();
-        return response()->json($reseps);
-    }
+    // // menampilkan resep berdasarkan tingkat kematangan
+    // public function byTingkatKematangan($tingkat)
+    // {
+    //     $reseps = Resep::where('tingkat_kematangan', $tingkat)->with('bahans')->get();
+    //     return response()->json($reseps);
+    // }
 
     // menampilkan detail resep
     public function show($id)
@@ -46,53 +46,53 @@ class ResepController extends Controller
         return view('frontend.resep-show', compact('resep'));
     }
 
-    public function store(Request $request)
-    {
-        $validate = $request->validate([
-            'nama_resep' => 'required|string',
-            'deskripsi' => 'required|string',
-            'tingkat_kematangan' => 'required|string',
-            'gambar' => 'nullable|string',
-            'langkah' => 'required|string',
-        ]);
+    // public function store(Request $request)
+    // {
+    //     $validate = $request->validate([
+    //         'nama_resep' => 'required|string',
+    //         'deskripsi' => 'required|string',
+    //         'tingkat_kematangan' => 'required|string',
+    //         'gambar' => 'nullable|string',
+    //         'langkah' => 'required|string',
+    //     ]);
 
-        // simpan ke database
-        $resep = Resep::create($validate);
+    //     // simpan ke database
+    //     $resep = Resep::create($validate);
 
-        // Redirect atau response
-        return response()->json([
-            'message' => 'Resep berhasil ditambahkan',
-            'data' => $resep
-        ], 201);
-    }
+    //     // Redirect atau response
+    //     return response()->json([
+    //         'message' => 'Resep berhasil ditambahkan',
+    //         'data' => $resep
+    //     ], 201);
+    // }
 
-    public function update(Request $request, $id)
-    {
-        $validate = $request->validate([
-            'nama_resep' => 'required|string',
-            'deskripsi' => 'required|string',
-            'tingkat_kematangan' => 'required|string',
-            'gambar' => 'nullable|string',
-            'langkah' => 'required|string',
-        ]);
+    // public function update(Request $request, $id)
+    // {
+    //     $validate = $request->validate([
+    //         'nama_resep' => 'required|string',
+    //         'deskripsi' => 'required|string',
+    //         'tingkat_kematangan' => 'required|string',
+    //         'gambar' => 'nullable|string',
+    //         'langkah' => 'required|string',
+    //     ]);
 
-        $resep = Resep::findOrFail($id);
-        $resep->update($validate);
+    //     $resep = Resep::findOrFail($id);
+    //     $resep->update($validate);
 
-        return response()->json([
-            'message' => 'Resep berhasil diperbarui',
-            'data' => $resep
-        ]);
-    }
+    //     return response()->json([
+    //         'message' => 'Resep berhasil diperbarui',
+    //         'data' => $resep
+    //     ]);
+    // }
 
-    //Menghapus resep
-    public function destroy($id)
-    {
-        $resep = Resep::findOrFail($id);
-        $resep->delete();
+    // //Menghapus resep
+    // public function destroy($id)
+    // {
+    //     $resep = Resep::findOrFail($id);
+    //     $resep->delete();
 
-        return response()->json([
-            'message' => 'Resep berhasil dihapus anjay'
-        ]);
-    }
+    //     return response()->json([
+    //         'message' => 'Resep berhasil dihapus'
+    //     ]);
+    // }
 }

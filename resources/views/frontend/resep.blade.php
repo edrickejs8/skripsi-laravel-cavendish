@@ -88,35 +88,6 @@
                 {!! auth()->user() && auth()->user()->favoritReseps->contains($resep->id) ? '&#9733;' : '&#9734;' !!}
             </div>
 
-            <script>
-                // bookmark toggle tetap ada
-                document.querySelectorAll('.bookmark').forEach(bookmark => {
-                    bookmark.addEventListener('click', function (event) {
-                        event.stopPropagation(); // agar tidak ikut toggle card
-                        const resepId = this.getAttribute('data-id');
-                        const el = this;
-
-                        fetch(`/favorit/toggle/${resepId}`, {
-                            method: "POST",
-                            headers: {
-                                "X-CSRF-TOKEN": "{{ csrf_token() }}",
-                                "Content-Type": "application/json"
-                            },
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            el.classList.toggle('bookmarked');
-                            el.innerHTML = el.classList.contains('bookmarked') ? '&#9733;' : '&#9734;';
-                        });
-                    });
-                });
-
-                // Expand/collapse card saat diklik
-                function toggleDetails(card) {
-                    card.classList.toggle('expanded');
-                }
-            </script>
-
             <div class="recipe-details">
                 <h4>Bahan-bahan:</h4>
                 <ul>
@@ -140,23 +111,32 @@
     </div>
 
     <script>
-        // Toggle bookmark warna saat diklik
-        document.querySelectorAll('.bookmark').forEach(bookmark => {
-            bookmark.addEventListener('click', function () {
-                const resepId = this.getAttribute('data-id');
-                const el = this;
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll('.bookmark').forEach(bookmark => {
+                bookmark.addEventListener('click', function (event) {
+                    event.stopPropagation(); // Supaya tidak toggle .expanded
+                    const resepId = this.getAttribute('data-id');
+                    const el = this;
 
-                fetch(`/favorit/toggle/${resepId}`, {
-                    method: "POST",
-                    headers: {
-                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
-                        "Content-Type": "application/json"
-                    },
-                })
-                .then(response => response.json())
-                .then(data => {
-                    el.classList.toggle('bookmarked');
-                    el.innerHTML = el.classList.contains('bookmarked') ? '&#9733;' : '&#9734;';
+                    fetch(`/favorit/toggle/${resepId}`, {
+                        method: "POST",
+                        headers: {
+                            "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                            "Content-Type": "application/json"
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        el.classList.toggle('bookmarked');
+                        el.innerHTML = el.classList.contains('bookmarked') ? '&#9733;' : '&#9734;';
+                    });
+                });
+            });
+
+            // Toggle detail saat klik card
+            document.querySelectorAll('.recipe-card').forEach(card => {
+                card.addEventListener('click', function () {
+                    card.classList.toggle('expanded');
                 });
             });
         });

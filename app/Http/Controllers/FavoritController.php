@@ -38,23 +38,23 @@ class FavoritController extends Controller
         }
     }
 
-    public function listFavorit(Request $request)
-    {
-        // Mendapatkan user yang sedang login
-        $user = Auth::user();
+    // public function listFavorit(Request $request)
+    // {
+    //     // Mendapatkan user yang sedang login
+    //     $user = Auth::user();
 
-        // Mengambil resep-resep favorit user
-        $favoritReseps = $user->favoritReseps;
+    //     // Mengambil resep-resep favorit user
+    //     $favoritReseps = $user->favoritReseps;
 
-        // Mengembalikan daftar resep favorit dalam format JSON
-        return response()->json($favoritReseps);
-    }
+    //     // Mengembalikan daftar resep favorit dalam format JSON
+    //     return response()->json($favoritReseps);
+    // }
 
     // Tampilkan semua resep favorit
     public function index()
     {
         $user = Auth::user();
-        $favorites = $user->favoritReseps()->with('user')->get();
+        $favorites = $user->favoritReseps()->with(['user', 'bahans'])->get();
 
         return view('frontend.favorit', compact('favorites'));
     }

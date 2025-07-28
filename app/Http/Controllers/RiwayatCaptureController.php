@@ -71,24 +71,24 @@ class RiwayatCaptureController extends Controller
         ]);
     }
 
-    public function index()
-    {
-        $riwayats = RiwayatCapture::with('penyimpanan')
-            ->where('user_id', Auth::id())
-            ->latest()
-            ->get();
+    // public function index()
+    // {
+    //     $riwayats = RiwayatCapture::with('penyimpanan')
+    //         ->where('user_id', Auth::id())
+    //         ->latest()
+    //         ->get();
         
-        return response()->json($riwayats);
-    }
+    //     return response()->json($riwayats);
+    // }
 
-    public function show($id)
-    {
-        $riwayat = RiwayatCapture::with('penyimpanan')
-            ->where('user_id', Auth::id())
-            ->findOrFail($id);
+    // public function show($id)
+    // {
+    //     $riwayat = RiwayatCapture::with('penyimpanan')
+    //         ->where('user_id', Auth::id())
+    //         ->findOrFail($id);
         
-        return response()->json($riwayat);
-    }
+    //     return response()->json($riwayat);
+    // }
 
     public function riwayatPage()
     {
